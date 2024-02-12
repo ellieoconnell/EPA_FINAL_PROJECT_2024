@@ -1,0 +1,6 @@
+{
+    "hosted-zone:account=*********:domainName=ocoelean.people.aws.dev:region=eu-west-2": {
+      "Id": "/hostedzone/***********",
+      "Name": "ocoelean.people.aws.dev."
+    }
+  }
