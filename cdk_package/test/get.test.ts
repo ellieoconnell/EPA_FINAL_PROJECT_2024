@@ -8,9 +8,9 @@ const ddbMock = mockClient(DynamoDBDocumentClient);
 const dnsStage = process.env.DNS_STAGE ? process.env.DNS_STAGE: "";
 
 const getquestion = {
-    question: 'BEEP_TEST_QUESTION',
-    level: 'fourth',
-    role: 'fourth',
+  role: 'fourth',
+  question: 'BEEP_TEST_QUESTION',
+  type: 'fourth'
   };
 
 const getmalformed_question = {};
