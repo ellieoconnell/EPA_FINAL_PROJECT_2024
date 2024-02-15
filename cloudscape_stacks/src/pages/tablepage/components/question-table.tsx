@@ -11,12 +11,6 @@ import { createApiPath } from "../../../utils/helper";
 
 const columnDefinitions: TableProps['columnDefinitions'] = [
   {
-    header: 'Level',
-    cell: ({ level }) => level,
-    sortingField: 'level',
-    minWidth: 175,
-  },
-  {
     header: 'Role Title',
     cell: ({ role }) => role,
     sortingField: 'role',
@@ -26,6 +20,12 @@ const columnDefinitions: TableProps['columnDefinitions'] = [
     header: 'Question',
     cell: ({ question }) => question,
     sortingField: 'question',
+    minWidth: 160,
+  },
+  {
+    header: 'Question Type',
+    cell: ({ type }) => type,
+    sortingField: 'type',
     minWidth: 160,
   },
 ];
