@@ -38,9 +38,9 @@ type FlashMessageType = {
 } | null;
 
 export default function App() {
-  const [selectedLevel, setSelectedLevel] = useState<readonly OptionDefinition[]>([]);
   const [selectedJobTitle, setSelectedJobTitle] = useState<readonly OptionDefinition[]>([]);
   const [question, setQuestion] = useState('');
+  const [selectedType, setSelectedType] = useState<readonly OptionDefinition[]>([]);
   const [flashMessage, setFlashMessage] = useState<FlashMessageType>(null);
 
   const handleSubmit = async (event:  React.FormEvent<HTMLFormElement>) => {
@@ -52,9 +52,9 @@ export default function App() {
     }
 
     const questionData = {
-      level: selectedLevel.length > 0 ? selectedLevel[0].value : '',
       role: selectedJobTitle.length > 0 ? selectedJobTitle[0].value : '',
       question,
+      type: selectedType.length > 0 ? selectedType[0].value : '',
     };
   
       try {
@@ -74,9 +74,9 @@ export default function App() {
           id: 'success_message',
         });
 
-        setSelectedLevel([]);
         setSelectedJobTitle([]);
         setQuestion('');
+        setSelectedType([]);
       } catch (error: any) {
         console.error('Complete error object', error);
         console.log('Request Payload:', questionData);
@@ -96,7 +96,7 @@ export default function App() {
     };
 
     const validateForm = () => {
-      return selectedLevel.length > 0 && selectedJobTitle.length > 0 && question.trim() !== '';
+      return selectedType.length > 0 && selectedJobTitle.length > 0 && question.trim() !== '';
   };
 
   return (
@@ -131,20 +131,6 @@ export default function App() {
           {flashMessage && <Flashbar items={[flashMessage]} />}
           <Container header={<Header variant="h2">Role Information</Header>}>
               <SpaceBetween direction="vertical" size="l">
-                <FormField label="Job Level">
-                  <Multiselect
-                        selectedOptions={selectedLevel}
-                        onChange={({ detail }) =>
-                          setSelectedLevel(detail.selectedOptions)
-                        }
-                        options={[
-                          {label: "Level 4", value: "Level 4"},
-                          {label: "Level 5", value: "Level 5"},
-                          {label: "Level 6", value: "Level 6"}
-                        ]}
-                        placeholder="Select the appropriate level"
-                      />
-                      </FormField>
                   <FormField label="Job Title">
                   <Multiselect
                         selectedOptions={selectedJobTitle}
@@ -171,6 +157,22 @@ export default function App() {
                     onChange={(e) => setQuestion(e.target.value)}
                     placeholder="Enter your question"
                   />
+                </FormField>
+                <FormField label="Question Type">
+                  <Multiselect
+                        selectedOptions={selectedType}
+                        onChange={({ detail }) =>
+                          setSelectedType(detail.selectedOptions)
+                        }
+                        options={[
+                          {label: "Coding", value: "Coding"},
+                          {label: "Networking", value: "Networking"},
+                          {label: "Linux", value: "Linux"},
+                          {label: "Leadership Principles", value: "Leadership Principles"},
+                          {label: "Scripting", value: "Scripting"}
+                        ]}
+                        placeholder="Select the appropriate question type"
+                      />
                 </FormField>
               </SpaceBetween>
             </Container>
