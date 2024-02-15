@@ -40,7 +40,7 @@ export const handler = async (event: { requestContext: any; body: any; routeKey?
             throw new Error('Malformed JSON in the request body');
           }
 
-          if (!requestJSON.question || !requestJSON.level || !requestJSON.role) {
+          if (!requestJSON.role || !requestJSON.question || !requestJSON.type) {
             throw new Error('Malformed question structure in the request body');
           }
 
@@ -48,9 +48,9 @@ export const handler = async (event: { requestContext: any; body: any; routeKey?
             new PutCommand({
               TableName: tableName,
               Item: {
-                level: requestJSON.level,
+                level: requestJSON.role,
                 question: requestJSON.question,
-                role: requestJSON.role
+                role: requestJSON.type
               }
             })
           );
