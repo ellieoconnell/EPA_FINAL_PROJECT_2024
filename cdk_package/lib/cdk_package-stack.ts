@@ -30,7 +30,7 @@ export class CdkPackageStack extends Stack {
             tableName: props?.stageName + 'qwizGurusInterviewTable_euWest2',
             removalPolicy: cdk.RemovalPolicy.DESTROY,
             partitionKey: {
-                name: 'level',
+                name: 'role',
                 type: ddb.AttributeType.STRING,
             },
             sortKey: {
